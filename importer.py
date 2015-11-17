@@ -34,9 +34,12 @@ class Importer():
             tcursor = tweepy.Cursor(self.api.user_timeline, user_id=userid)
             for item in tcursor.items():
                 print(item.id)
-                if data.AddTweet(item.id, item.text, item.user.id) is False:
-                    break
-                else:
+                try:
+                    if data.AddTweet(item.id, item.text, item.user.id) is False:
+                        break
+                    else:
+                        time.sleep(.3)
+                except:
                     time.sleep(.3)
 
 # Objects
