@@ -35,12 +35,20 @@ class Importer():
             for item in tcursor.items():
                 print(item.id)
                 try:
-                    if data.AddTweet(item.id, item.text, item.user.id) is False:
+                    if data.AddTweet(item.id, item.text,
+                                     item.user.id) is False:
                         break
-                    else:
-                        time.sleep(.3)
                 except:
-                    time.sleep(.3)
+                    pass
+
+                time.sleep(.3)
+
+    def ParseTweets(self):
+        for tweet in data.FetchUnParsedTweets():
+            for word in tweet[2].split():
+                data.AddWord(tweet[1], word)
+
+            data.ParsedTweet(tweet[1])
 
 # Objects
 data = Data()
@@ -48,10 +56,14 @@ importer = Importer()
 
 # Main
 # Update User Screen Names
-importer.UpdateUserIds()
+# importer.UpdateUserIds()
 
 # Gets Users
-users = importer.ParseUsers()
+# users = importer.ParseUsers()
 
 # Imports New Tweets
-importer.ImportTweets(users)
+# importer.ImportTweets(users)
+
+# Parse Tweet
+print('starting parsing')
+importer.ParseTweets()
