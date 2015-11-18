@@ -51,18 +51,22 @@ class Importer():
             data.ParsedTweet(tweet[1])
 
 # Objects
+print('creating objects')
 data = Data()
 importer = Importer()
 
 # Main
 # Update User Screen Names
-# importer.UpdateUserIds()
+print('checking users')
+importer.UpdateUserIds()
 
 # Gets Users
-# users = importer.ParseUsers()
+print('fetching users')
+users = importer.ParseUsers()
 
 # Imports New Tweets
-# importer.ImportTweets(users)
+print('importing tweets')
+importer.ImportTweets(users)
 
 # Parse Tweet
 print('starting parsing')
