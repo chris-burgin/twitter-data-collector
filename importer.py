@@ -25,9 +25,10 @@ class Importer():
 
     def UpdateUserIds(self):
         for user in data.FetchUsers():
-            screenname = user[2]
-            userid = self.api.get_user(screen_name=screenname).id
-            data.SetUserID(screenname, userid)
+            if users[1] is not None:
+                screenname = user[2]
+                userid = self.api.get_user(screen_name=screenname).id
+                data.SetUserID(screenname, userid)
 
     def ImportTweets(self, userids):
         for userid in userids:
