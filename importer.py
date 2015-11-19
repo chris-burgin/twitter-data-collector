@@ -25,7 +25,7 @@ class Importer():
 
     def UpdateUserIds(self):
         for user in data.FetchUsers():
-            if users[1] is not None:
+            if user[1] is not None:
                 screenname = user[2]
                 userid = self.api.get_user(screen_name=screenname).id
                 data.SetUserID(screenname, userid)
